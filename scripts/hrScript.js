@@ -1,3 +1,10 @@
+window.onload = function (){
+	f(sessionStorage.beforeHrHome != "x5x5x5x"){
+		window.location='home.html';
+		console.log("Direct access not allowed : " + document.referrer);
+		return;			}
+}
+
 function addNewEmp() {
 	var userMail=document.getElementById("usermail").value;
 	var userPass=document.getElementById("userpass").value;
@@ -27,6 +34,7 @@ function searchUser(event){
 			}	
 		}
 		sessionStorage.setItem('searchResultByComma',searchResultByComma);
+		sessionStorage.setItem('beforeSearchResult','x5x5x5x');
 		window.location='searchResult.html';
 	}	
 }

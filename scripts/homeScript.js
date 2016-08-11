@@ -14,18 +14,22 @@ function validateUser() {
 	else{
 		if(sessionStorage.totalUsers){
 			var total=sessionStorage.totalUsers;
+			console.log("searching within " + total + " Users");
 			for(var i=1;i<=total;i++){
 				if(sessionStorage.getItem(i)==userMail && sessionStorage.getItem(userMail)==userPass){
 					sessionStorage.currentUser=userMail;
+					sessionStorage.setItem("beforeUserHome",'x5x5x5x');
 					window.location='userHome.html';
+					return;
 				}
 			}
-
+			alert("Wrong Email and password!");
 		}else{
 			alert("Wrong Email and password!");
 		}	
 	}
 }
 function loggedInHR(){
+	sessionStorage.setItem("beforeHrHome","x5x5x5x");
 	window.location='hrHome.html';	
 }
