@@ -18,11 +18,18 @@
 			Total Users : <span id="totalusers">0</span><br>
 			<br>
 		</div>
-		<h5>Search : </h5>
 		<div id="searchuser">
-			<input type="text" name="searchtext" id="searchtext">
+			<span><b>Search : </b></span>
+			<input type="text" name="searchtext" id="searchtext" onkeypress="searchUser(event)">
+		</div>	
+		<h5>Comment A User : </h5>
+		<div id="commentuser">
+			<input type="text" id="usercommentmail">
+			<input type="text" id="usercomment">
+			<button type="submit" onclick="makeComment()"> Comment </button>
 		</div>
-		<button type="submit" onclick="hrLogOut()">Log Out</button>	
+		<br>
+		<button type="submit" onclick="hrLogOut()">Log Out</button>
 		<footer>
 			<h6>CronJ IT Technologies</h6>
 		</footer>

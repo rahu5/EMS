@@ -4,5 +4,9 @@ window.onload = function() {
 					document.getElementById('profilemail').innerHTML=current;
 					document.getElementById('profilepass').innerHTML=sessionStorage.getItem(current);
 					console.log(sessionStorage.getItem(current));
-					//add comment
+					document.getElementById('profilecomment').innerHTML=sessionStorage.getItem(current+"Com");
 				}
+function logOutUser(){
+	window.location='home.html';
+	console.log("User logged Out!");
+}				

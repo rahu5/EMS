@@ -1,10 +1,12 @@
 var hrEmail="hr@cronj.com";
 var hrPass="hrcronj";
 function validateUser() {
+	console.log("validate");
 	var userMail=document.getElementById("usermail").value;
 	var userPass=document.getElementById("userpass").value;	
 	if(userMail==hrEmail && userPass==hrPass) {
 			//alert("Logged In!");
+			console.log("Hr");
 			sessionStorage.currentUser=hrEmail;
 			sessionStorage.totalUsers=0;
 			loggedInHR();
