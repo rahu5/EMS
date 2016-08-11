@@ -7,6 +7,7 @@ window.onload = function() {
 					document.getElementById('profilecomment').innerHTML=sessionStorage.getItem(current+"Com");
 				}
 function logOutUser(){
+	sessionStorage.currentUser="loggedOut";
 	window.location='home.html';
 	console.log("User logged Out!");
 }				
