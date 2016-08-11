@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+	<head>
+		<title>EMS</title>
+		<script type="text/javascript" src="scripts/hrScript.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/hrhome.css">
+	</head>
+	<body>
+		<header>
+			<h1>Employee Management System</h1>
+		</header>
+		<div id="hrblock">
+			<strong>Add a user</strong><br>
+			<input type="email" name="usermail" id="usermail" value="Email" required>
+			<input type="password" name="userpass" id="userpass" value="pass" required>
+			<button type="submit" onclick="addNewEmp()">Add</button>
+			<br>
+			Total Users : <span id="totalusers">0</span><br>
+			<br>
+		</div>
+		<h5>Search : </h5>
+		<div id="searchuser">
+			<input type="text" name="searchtext" id="searchtext">
+		</div>
+		<button type="submit" onclick="hrLogOut()">Log Out</button>	
+		<footer>
+			<h6>CronJ IT Technologies</h6>
+		</footer>
+	</body>
+</html>
