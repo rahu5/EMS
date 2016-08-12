@@ -4,13 +4,21 @@ function validateUser() {
 	console.log("validate");
 	var userMail=document.getElementById("usermail").value;
 	var userPass=document.getElementById("userpass").value;	
+	if(!userMail.includes("@")){
+		alert("Not an email! Please insert a valid email.");
+		return;
+	}
 	if(userMail==hrEmail && userPass==hrPass) {
 			//alert("Logged In!");
-			console.log("Hr");
-			sessionStorage.currentUser=hrEmail;
+			console.log("Hr logging in..");
+			try{
 			if(sessionStorage.totalUsers == undefined){
 				sessionStorage.totalUsers=0;
+			}}catch(e){
+				alert("Something went wrong !");
+				return;
 			}
+			sessionStorage.currentUser=hrEmail;
 			//alert("total users are : " + sessionStorage.totalUsers);	
 			loggedInHR();
 	}
@@ -26,9 +34,9 @@ function validateUser() {
 					return;
 				}
 			}
-			alert("Wrong Email and password!");
+			alert("Wrong Email OR Password!");
 		}else{
-			alert("Wrong Email and password!");
+			alert("Wrong Email OR Password!");
 		}	
 	}
 }

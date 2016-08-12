@@ -1,5 +1,10 @@
 window.onload  =  function () {
+	try{
 	if(sessionStorage.beforeSearchResult != "x5x5x5x"){
+		window.location='home.html';
+		console.log("Direct access not allowed : " + document.referrer);
+		return;
+	}}catch(e){
 		window.location='home.html';
 		console.log("Direct access not allowed : " + document.referrer);
 		return;

@@ -1,5 +1,11 @@
 window.onload = function (){
-	if(sessionStorage.beforeHrHome != "x5x5x5x"){
+	console.log("loading...");
+	try{
+	if(sessionStorage.getItem("beforeHrHome")==undefined){
+		window.location='home.html';
+		console.log("Direct access not allowed : " + document.referrer);
+		return;
+	}}catch(e){
 		window.location='home.html';
 		console.log("Direct access not allowed : " + document.referrer);
 		return;
@@ -12,6 +18,16 @@ function addNewEmp() {
 	var userMail=document.getElementById("usermail").value;
 	var userPass=document.getElementById("userpass").value;
 	var lastCount=parseInt(sessionStorage.totalUsers);
+	if(!userMail.includes("@")){
+		alert("Not an email! Please insert a valid email.");
+		return;
+	}
+	for(var i=1;i<=lastCount;i++){
+		if(sessionStorage.getItem(i)==userMail){
+			alert("Dang! This user exist already.");
+			return;
+		}
+	}
 	sessionStorage.setItem(lastCount+1,userMail);
 	sessionStorage.setItem(userMail,userPass);
 	sessionStorage.setItem('totalUsers',lastCount+1);
@@ -51,8 +67,8 @@ function makeComment(){
 		sessionStorage.setItem(userMail + "Com",userComment);
 		console.log(userComment);
 		alert("Comment saved!");
-		document.getElementById("usercommentmail").value="email";
-		document.getElementById("usercomment").value="comment please!";
+		document.getElementById("usercommentmail").value="";
+		document.getElementById("usercomment").value="";
 	}else{
 		alert("User does not exist!");
 	}
