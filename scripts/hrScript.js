@@ -17,6 +17,7 @@ function addNewEmp() {
 	sessionStorage.setItem('totalUsers',lastCount+1);
 	console.log("total users : " + (lastCount+1));
 	document.getElementById("totalusers").innerHTML=lastCount+1;
+	alert("User " + userMail + " added successfully !");
 }
 function hrLogOut(){
 	window.location='home.html';
@@ -56,6 +57,7 @@ function makeComment(){
 		alert("User does not exist!");
 	}
 }
+var currentTotalUsers=1;
 function navigateHrTo(option){
 	console.log(option + "tab clicked.");
 	var tabs=["hrblock","searchuser","commentuser"];
@@ -69,8 +71,8 @@ function navigateHrTo(option){
 	document.getElementById(option).style.visibility="visible";
 	if(option=="searchuser"){
 		var total=parseInt(sessionStorage.totalUsers);
-		for(var i=1;i<=total;i++){	
-			var newEmp=document.createElement("p").appendChild(document.createTextNode(sessionStorage.getItem(i)));
+		for(currentTotalUsers;currentTotalUsers<=total;currentTotalUsers++){	
+			var newEmp=document.createElement("p").appendChild(document.createTextNode(sessionStorage.getItem(currentTotalUsers)));
 			document.getElementById("userlist").appendChild(newEmp);
 			document.getElementById("userlist").appendChild(document.createElement("br"));
 		}	

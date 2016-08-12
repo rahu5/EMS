@@ -3,19 +3,23 @@
 	<head>
 		<title>EMS</title>
 		<script type="text/javascript" src="scripts/homeScript.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles/home.css">		
 	</head>
 	<body>
 		<header>
-			<h1>Employee Management System</h1>
+			<h1 class="headerfooter">Employee Management System</h1>
 		</header>
+		<label id="homeHead">LOG IN</label>
+		<div id="homemainblock">
 		<div id="mainLoginBlock">
-			<strong>LOG IN</strong><br>
+			<br>
 			<input type="email" name="usermail" id="usermail" value="hr@cronj.com" required><br>
 			<input type="password" name="userpass" id="userpass" value="hrcronj" required><br>
 			<button type="submit" onclick="validateUser()">Submit</button>
 		</div>
-		<footer>
-			<h6>CronJ IT Technologies</h6>
+		</div>
+		<footer >
+			<h6 class="headerfooter">CronJ IT Technologies</h6>
 		</footer>
 	</body>
 </html>

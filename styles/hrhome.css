@@ -1,15 +1,50 @@
+body{
+	text-align: center;
+}
+.headerfooter{
+	 color: #0099dd;
+}
 #hrnavigation:hover{
 	cursor: pointer;
 }
 #hrblock{
 	display: block;
 	visibility: visible;
+	color: #0099dd;
 }
 #searchuser{
 	display:none;
 	visibility: hidden;
+	color: #0099dd;
 }
 #commentuser{
 	display: none;
 	visibility: hidden;
+	color: #0099dd;
+}
+#hrmainblock{
+	padding-top: 25px;
+	background:  #e6e6e6;
+	width: 40%;
+	padding-bottom: 10vh;
+	margin: auto;
+	color: #0099dd;
+}
+#hrnavigation{
+	background: #aabbcc;
+	width: 40%;
+	margin: auto;
+	height: 5vh;
+	color: #24478f;
+	font-weight: bold;
+}
+.navTabs{
+	display: inline-block;
+	height: 5vh;
+	width: 32.5%;
+	vertical-align: middle;
+	line-height: 5vh;
+}
+.navTabs:hover{
+	background: #9999ff;
 }

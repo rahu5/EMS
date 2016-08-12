@@ -1,0 +1,23 @@
+body{
+	text-align: center;
+}
+#usermainblock{
+	padding-top: 25px;
+	background:  #e6e6e6;
+	width: 40%;
+	margin: auto;
+	padding-bottom: 10vh;
+	color: #0099dd;
+}
+.headerfooter{
+	 color: #0099dd;
+}
+#profileHead{
+	background: #aabbcc;
+	display: inline-block;
+	width: 40%;
+	height: 5vh;
+	line-height: 5vh;
+	color: #24478f;
+	font-weight: bold;
+}
