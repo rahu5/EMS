@@ -1,8 +1,11 @@
 window.onload = function (){
-	f(sessionStorage.beforeHrHome != "x5x5x5x"){
+	if(sessionStorage.beforeHrHome != "x5x5x5x"){
 		window.location='home.html';
 		console.log("Direct access not allowed : " + document.referrer);
-		return;			}
+		return;
+	}
+	console.log("totalusers are : " + sessionStorage.totalUsers);
+	document.getElementById("totalusers").innerHTML=sessionStorage.totalUsers;
 }
 
 function addNewEmp() {
@@ -51,5 +54,25 @@ function makeComment(){
 		document.getElementById("usercomment").value="comment please!";
 	}else{
 		alert("User does not exist!");
+	}
+}
+function navigateHrTo(option){
+	console.log(option + "tab clicked.");
+	var tabs=["hrblock","searchuser","commentuser"];
+	for(var i=0;i<3;i++){
+		console.log("hide : " + tabs[i]);
+		document.getElementById(tabs[i]).style.display="none";
+		document.getElementById(tabs[i]).style.visibility="hidden";	
+		console.log("hidden : " + tabs[i]);
+	}
+	document.getElementById(option).style.display="block";
+	document.getElementById(option).style.visibility="visible";
+	if(option=="searchuser"){
+		var total=parseInt(sessionStorage.totalUsers);
+		for(var i=1;i<=total;i++){	
+			var newEmp=document.createElement("p").appendChild(document.createTextNode(sessionStorage.getItem(i)));
+			document.getElementById("userlist").appendChild(newEmp);
+			document.getElementById("userlist").appendChild(document.createElement("br"));
+		}	
 	}
 }

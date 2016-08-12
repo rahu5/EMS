@@ -1,0 +1,15 @@
+#hrnavigation:hover{
+	cursor: pointer;
+}
+#hrblock{
+	display: block;
+	visibility: visible;
+}
+#searchuser{
+	display:none;
+	visibility: hidden;
+}
+#commentuser{
+	display: none;
+	visibility: hidden;
+}

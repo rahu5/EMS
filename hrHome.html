@@ -3,13 +3,19 @@
 	<head>
 		<title>EMS</title>
 		<script type="text/javascript" src="scripts/hrScript.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/hrhome.css">
+		<link rel="stylesheet" type="text/css" href="styles/hrhome.css">
 	</head>
 	<body>
 		<header>
 			<h1>Employee Management System</h1>
+			<nav id="hrnavigation">
+				<span id="navhrtoadduser" onclick="navigateHrTo('hrblock')">Add User</span>
+				<span id="navhrtosearch" onclick="navigateHrTo('searchuser')">Search User</span>
+				<span id="navhrtocomment" onclick="navigateHrTo('commentuser')">Comment User</span>
+			</nav>
 		</header>
 		<div id="hrblock">
+			<br>
 			<strong>Add a user</strong><br>
 			<input type="email" name="usermail" id="usermail" value="Email" required>
 			<input type="password" name="userpass" id="userpass" value="pass" required>
@@ -19,11 +25,18 @@
 			<br>
 		</div>
 		<div id="searchuser">
+			<br>
 			<span><b>Search : </b></span>
 			<input type="text" name="searchtext" id="searchtext" onkeypress="searchUser(event)">
-		</div>	
-		<h5>Comment A User : </h5>
-		<div id="commentuser">
+			<br>
+			<b>List Of Users : </b><br>
+			<div id="userlist">
+				
+			</div>
+		</div>
+		<div id="commentuser">			
+			<br>
+			<h5>Comment A User : </h5>
 			<input type="text" id="usercommentmail">
 			<input type="text" id="usercomment">
 			<button type="submit" onclick="makeComment()"> Comment </button>

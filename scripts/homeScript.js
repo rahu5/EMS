@@ -8,7 +8,10 @@ function validateUser() {
 			//alert("Logged In!");
 			console.log("Hr");
 			sessionStorage.currentUser=hrEmail;
-			sessionStorage.totalUsers=0;
+			if(sessionStorage.totalUsers == undefined){
+				sessionStorage.totalUsers=0;
+			}
+			//alert("total users are : " + sessionStorage.totalUsers);	
 			loggedInHR();
 	}
 	else{
