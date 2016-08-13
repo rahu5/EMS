@@ -34,6 +34,9 @@ function addNewEmp() {
 	console.log("total users : " + (lastCount+1));
 	document.getElementById("totalusers").innerHTML=lastCount+1;
 	alert("User " + userMail + " added successfully !");
+	document.getElementById("usermail").value = '';
+	document.getElementById("userpass").value = '';
+
 }
 function hrLogOut(){
 	window.location='home.html';

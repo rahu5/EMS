@@ -16,8 +16,7 @@ body{
 	background: #aabbcc;
 	display: inline-block;
 	width: 40%;
-	height: 5vh;
-	line-height: 5vh;
+	padding: .5% 0%;
 	color: #24478f;
 	font-weight: bold;
 }
