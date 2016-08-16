@@ -6,7 +6,7 @@ function validateUser() {
 	var userPass=document.getElementById("userpass").value;	
 	if(!userMail.includes("@")){
 		alert("Not an email! Please insert a valid email.");
-		return;
+		return false;
 	}
 	if(userMail==hrEmail && userPass==hrPass) {
 			//alert("Logged In!");
@@ -16,11 +16,11 @@ function validateUser() {
 				sessionStorage.totalUsers=0;
 			}}catch(e){
 				alert("Something went wrong !");
-				return;
+				return false;
 			}
 			sessionStorage.currentUser=hrEmail;
 			//alert("total users are : " + sessionStorage.totalUsers);	
-			loggedInHR();
+			return loggedInHR();
 	}
 	else{
 		if(sessionStorage.totalUsers){
@@ -31,7 +31,7 @@ function validateUser() {
 					sessionStorage.currentUser=userMail;
 					sessionStorage.setItem("beforeUserHome",'x5x5x5x');
 					window.location='userHome.html';
-					return;
+					return false;
 				}
 			}
 			alert("Wrong Email OR Password!");
@@ -42,5 +42,6 @@ function validateUser() {
 }
 function loggedInHR(){
 	sessionStorage.setItem("beforeHrHome","x5x5x5x");
-	window.location='hrHome.html';	
+	window.location='hrHome.html';
+	return false;	
 }

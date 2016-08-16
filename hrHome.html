@@ -9,23 +9,22 @@
 		<header>
 			<h1 class="headerfooter">Employee Management System</h1>
 			<nav id="hrnavigation">
-				<span id="navhrtoadduser" class="navTabs" onclick="navigateHrTo('hrblock')">Add</span>
-				<span id="navhrtosearch" class="navTabs" onclick="navigateHrTo('searchuser')">Search</span>
-				<span id="navhrtocomment" class="navTabs" onclick="navigateHrTo('commentuser')">Comment</span>
+				<span id="navhrtoadduser" class="navTabs" onclick="navigateHrTo('hrblock','navhrtoadduser')">Add</span>
+				<span id="navhrtosearch" class="navTabs" onclick="navigateHrTo('searchuser','navhrtosearch')">Search</span>
+				<span id="navhrtocomment" class="navTabs" onclick="navigateHrTo('commentuser','navhrtocomment')">Comment</span>
 			</nav>
 		</header>
 		<div id="hrmainblock">
-		<div id="hrblock">
+		<form id="hrblock" onsubmit="return addNewEmp()">
 			<br>
-			<strong>Add User</strong><br>
 			<input type="email" name="usermail" id="usermail" placeholder="Email" required><br>
 			<input type="password" name="userpass" id="userpass" placeholder="Password" required><br>
-			<button type="submit" onclick="addNewEmp()">Add</button>
+			<input type="submit" " value="Add"></button>
 			<br>
 			<br>
 			Total Users : <span id="totalusers">0</span><br>
 			<br>
-		</div>
+		</form>
 		<div id="searchuser">
 			<br>
 			<input type="text" placeholder="Search User" id="searchtext" onkeypress="searchUser(event)">
@@ -36,13 +35,15 @@
 				
 			</div>
 		</div>
-		<div id="commentuser">			
+		<form id="commentuser" onsubmit="return makeComment()">			
 			<br>
-			<h5>Comment User : </h5>
-			<input type="text" id="usercommentmail" placeholder="Email"><br>
+			<input type="text" id="usercommentmail" placeholder="Email" list="datalistComment"><br>
+			<datalist id="datalistComment">
+				
+			</datalist>
 			<input type="text" id="usercomment" placeholder="Comment"><br>
-			<button type="submit" onclick="makeComment()"> Comment </button>
-		</div>
+			<input type="submit" value="Comment">
+		</form>
 		<br>
 		<button type="submit" onclick="hrLogOut()">Log Out</button>
 		</div>

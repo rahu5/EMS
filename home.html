@@ -11,12 +11,12 @@
 		</header>
 		<label id="homeHead">LOG IN</label>
 		<div id="homemainblock">
-		<div id="mainLoginBlock">
+		<form id="mainLoginBlock" onsubmit="return validateUser()">
 			<br>
 			<input type="email" placeholder="EMail" id="usermail" required><br>
 			<input type="password" placeholder="Password" id="userpass" required><br>
-			<button type="submit" onclick="validateUser()">Submit</button>
-		</div>
+			<input type="submit" value="Log In">
+		</form> 
 		</div>
 		<footer >
 			<h6 class="headerfooter">CronJ IT Technologies</h6>
