@@ -1,7 +1,7 @@
 const hrEmail="hr@cronj.com";
 const hrPass="hrcronj";
 const WrongEmailPassword="Wrong Email OR Password!";
-const InvalidEmail="Not an email! Please insert a valid email."
+const InvalidEmail="Not an email! Please insert a valid email.";
 const UnknownError="Something went wrong !";
 function validateUser() {
 	console.log("validate");
@@ -44,7 +44,8 @@ function logInUser(userMail,userPass){
 	var total=sessionStorage.totalUsers;
 	console.log("searching within " + total + " Users");
 	for(var i=1;i<=total;i++){
-		if(sessionStorage.getItem(i)==userMail && sessionStorage.getItem(userMail)==userPass){
+		var usersObj=JSON.parse(sessionStorage.getItem("uid" + i));
+		if(usersObj.email==userMail && usersObj.pass==userPass){
 			sessionStorage.currentUser=userMail;
 			sessionStorage.setItem("beforeUserHome",'x5x5x5x');
 			redirectToPage('userHome.html');

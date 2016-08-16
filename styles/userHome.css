@@ -12,16 +12,20 @@ body{
 .headerfooter{
 	 color: #0099dd;
 }
-#profileHead{
+#usernavigation{
 	background: #aabbcc;
 	display: inline-block;
 	width: 40%;
-	padding: .5% 0%;
 	color: #24478f;
 	font-weight: bold;
 }
-#changePassForm{
-	width: 65%;
-	text-align: left;
-	margin-left: 28%;
+.userTabs{
+	display: inline-block;
+	width: 48%;
+	padding: 1.2% 0%;
+	cursor: pointer;
+}
+#userpassword{
+	display: none;
+	visibility: hidden;
 }

@@ -9,22 +9,32 @@
 	<body>
 		<header>
 			<h1 class="headerfooter">Employee Management System</h1>
+			<nav id="usernavigation">
+				<span id="navtoprofile" class="userTabs" onclick="showTab('userprofile','navtoprofile')">Profile</span>
+				<span id="navtopassword" class="userTabs" onclick="showTab('userpassword','navtopassword')">Password</span>
+			</nav>
 		</header>
-		<label id="profileHead">Profile</label>
 		<div id="usermainblock">
-		<div id="userprofile">
-			E MAIL :
-			<p id="profilemail"></p>
-			Comment By HR :<br><br>
-			<div id="profilecomment"></div><br>
-			Change Password :
-			<form id="changePassForm" onsubmit="return changePass()">
-				<input type="password" placeholder="Old Password" id="oldpassword">
-				<br>
-				<input type="password" placeholder="New Password" id="newpassword">
-				<input type="submit" value="Change">
-			</form>
-		</div>
+			<div id="userprofile">
+				<label> Name :</label>
+				<span id="profilename"></span><br>
+				<label>Mobile :</label>
+				<span id="profilemobile"></span><br>
+				<label>E-MAIL :</label>
+				<span id="profilemail"></span><br><br>
+				<label>Comment By HR :</label><br><br>
+				<div id="profilecomment"></div><br>
+			</div>
+			<div id="userpassword">
+				<form id="changePassForm" onsubmit="return changePass()">
+					<input type="password" placeholder="Old Password" autocomplete="off" id="oldpassword">
+					<br>
+					<input type="password" placeholder="New Password" autocomplete="off" id="newpassword">
+					<br>
+					<input type="submit" value="Change">
+				</form>
+			</div>
+			<br>
 		<button type="button" onclick="logOutUser()"> Log Out </button>
 		</div>
 		<footer>

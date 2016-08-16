@@ -8,7 +8,8 @@ window.onload  =  function () {
 		return;
 	}
 	var resultArray = JSON.parse(sessionStorage.getItem('searchResult'));
-	if(resultArray.length){
+	console.log("length : " + resultArray.list.length);
+	if(resultArray.list.length<1){
 		var pTag=document.createElement("p");
 		var insideText=document.createTextNode("Sorry! No match found.");
 		pTag.appendChild(insideText);

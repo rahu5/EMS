@@ -88,16 +88,29 @@ function updateDataList(option){
 	if(option=="searchuser" || option=="commentuser"){
 		var total=parseInt(sessionStorage.totalUsers);
 		for(currentTotalUsers;currentTotalUsers<=total;currentTotalUsers++){
-			var userObj=JSON.parse(sessionStorage.getItem("uid" + currentTotalUsers));	
-			var newEmp=document.createElement("p").appendChild(document.createTextNode(userObj.email));
+			var userObj=JSON.parse(sessionStorage.getItem("uid" + currentTotalUsers));
+			var id="uid" + currentTotalUsers;	
+			var newEmp=document.createElement("p");
+			newEmp.onclick=function(){commentOn(id);
+							};
+			newEmp.appendChild(document.createTextNode(userObj.email));
 			document.getElementById("userlist").appendChild(newEmp);
-			document.getElementById("userlist").appendChild(document.createElement("br"));
-
+			//document.getElementById("userlist").appendChild(document.createElement("br"));
+			newEmp.style.cursor="pointer";
 			var newData=document.createElement("option");
 			newData.setAttribute("value",userObj.email);
 			document.getElementById("datalistComment").appendChild(newData);
 		}	
 	}
+}
+function commentOn(id){
+	console.log("clicked : " + id);
+	var selectedUser=JSON.parse(sessionStorage.getItem(id));
+	document.getElementById("usercommentmail").value=selectedUser.email;
+	hideAllTab();
+	resetAllTabColor();
+	setTabColor("navhrtocomment");
+	showTab("commentuser");
 }
 function hideAllTab(){
 	var tabs=["hrblock","searchuser","commentuser"];
