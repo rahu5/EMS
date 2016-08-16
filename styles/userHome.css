@@ -20,3 +20,8 @@ body{
 	color: #24478f;
 	font-weight: bold;
 }
+#changePassForm{
+	width: 65%;
+	text-align: left;
+	margin-left: 28%;
+}

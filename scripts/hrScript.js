@@ -2,13 +2,9 @@ window.onload = function (){
 	console.log("loading...");
 	try{
 	if(sessionStorage.getItem("beforeHrHome")==undefined){
-		window.location='home.html';
-		console.log("Direct access not allowed : ");
-		return;
+		return redirectToPage('home.html');
 	}}catch(e){
-		window.location='home.html';
-		console.log("Direct access not allowed : ");
-		return;
+		return redirectToPage('home.html');
 	}
 	console.log("totalusers are : " + sessionStorage.totalUsers);
 	document.getElementById("totalusers").innerHTML=sessionStorage.totalUsers;
@@ -18,104 +14,120 @@ window.onload = function (){
 function addNewEmp() {
 	var userMail=document.getElementById("usermail").value;
 	var userPass=document.getElementById("userpass").value;
+	var userName=document.getElementById("username").value;
+	var userMobile=document.getElementById("usermobile").value;
 	var lastCount=parseInt(sessionStorage.totalUsers);
-	if(!userMail.includes("@")){
-		alert("Not an email! Please insert a valid email.");
+	if(userAlreadyExist(userMail,lastCount)){
+		alert("Dang! This user exists already.");
 		return false;
 	}
-	for(var i=1;i<=lastCount;i++){
-		if(sessionStorage.getItem(i)==userMail){
-			alert("Dang! This user exist already.");
-			return false;
-		}
-	}
-	sessionStorage.setItem(lastCount+1,userMail);
-	sessionStorage.setItem(userMail,userPass);
+	var obj={email:userMail,pass:userPass,name:userName,mobile:userMobile,comment:[]};
+	sessionStorage.setItem("uid"+(lastCount+1),JSON.stringify(obj));
+	//sessionStorage.setItem(lastCount+1,userMail);
+	//sessionStorage.setItem(userMail,userPass);
 	sessionStorage.setItem('totalUsers',lastCount+1);
 	console.log("total users : " + (lastCount+1));
 	document.getElementById("totalusers").innerHTML=lastCount+1;
-	alert("User " + userMail + " added successfully !");
 	document.getElementById("usermail").value = '';
 	document.getElementById("userpass").value = '';
 	return false;
-
 }
 function hrLogOut(){
-	window.location='home.html';
-	console.log("hr logged Out!")
-	return false;
+	return redirectToPage('home.html');
 }
 function searchUser(event){
-	if(event.key==13 || event.which==13){
+	if(event.which==13 || event=='13'){
 		var searchPattern=document.getElementById("searchtext").value;
-		var searchResultByComma="";
+		//var searchResultByComma="";
+		var searchResult={list:[]};
 		var totalusers=parseInt(sessionStorage.totalUsers);
 		for(var i=1;i<=totalusers;i++){
-			var fetchEmail=sessionStorage.getItem(i);
+			var fetchObj=JSON.parse(sessionStorage.getItem("uid" + i));
+			var fetchEmail=fetchObj.email;
 			if(fetchEmail.includes(searchPattern)){
-				if(searchResultByComma=="")
-					searchResultByComma=fetchEmail;
-				else
-					searchResultByComma=searchResultByComma + "," + fetchEmail;
+				searchResult.list[searchResult.list.length]=fetchEmail;
 			}	
 		}
-		sessionStorage.setItem('searchResultByComma',searchResultByComma);
+		sessionStorage.setItem('searchResult',JSON.stringify(searchResult));
 		sessionStorage.setItem('beforeSearchResult','x5x5x5x');
-		window.location='searchResult.html';
+		redirectToPage('searchResult.html');
 	}	
 }
 function makeComment(){
-	console.log("Comment :");
 	var userMail=document.getElementById("usercommentmail").value;
 	var userComment=document.getElementById("usercomment").value;
-	var user=sessionStorage.getItem(userMail);
-	if(user){
-		if(sessionStorage.getItem(userMail+"Com")){
-			sessionStorage.setItem(userMail + "Com",sessionStorage.getItem(userMail+"Com") + "," + userComment);	
-		}else{
-			sessionStorage.setItem(userMail + "Com",userComment);
-		}	
-		console.log(userComment);
-		alert("Comment saved!");
-		document.getElementById("usercommentmail").value="";
-		document.getElementById("usercomment").value="";
-		return false;
-	}else{
-		alert("User does not exist!");
-		return false;
+	var total=parseInt(sessionStorage.totalUsers);
+	var isUserFound=false;
+	for(var i=1;i<=total;i++){
+		var userObj=JSON.parse(sessionStorage.getItem("uid" + i));
+		if(userObj.email==userMail){
+			userObj.comment[userObj.comment.length]=userComment;
+			isUserFound=true;
+			sessionStorage.setItem("uid" + i,JSON.stringify(userObj));
+			alert("Comment saved!");
+			document.getElementById("usercommentmail").value="";
+			document.getElementById("usercomment").value="";
+			return false;
+		}
 	}
+	alert("User does not exist!");
+	return false;
 }
 var currentTotalUsers=1;
-var TabColorNormal="#aabbcc";
-var TabColorSelected="#3973ac";
+const TabColorNormal="#aabbcc";
+const TabColorSelected="#3973ac";
 function navigateHrTo(option,tabClicked){
-	console.log(option + "tab clicked.");
-	var tabs=["hrblock","searchuser","commentuser"];
-	for(var i=0;i<3;i++){
-		console.log("hide : " + tabs[i]);
-		document.getElementById(tabs[i]).style.display="none";
-		document.getElementById(tabs[i]).style.visibility="hidden";
-		console.log("hidden : " + tabs[i]);
-	}
-	document.getElementById("navhrtoadduser").style.background=TabColorNormal;
-	document.getElementById("navhrtosearch").style.background=TabColorNormal;
-	document.getElementById("navhrtocomment").style.background=TabColorNormal;	
-	
-	document.getElementById(tabClicked).style.background=TabColorSelected;
-
-	document.getElementById(option).style.display="block";
-	document.getElementById(option).style.visibility="visible";
+	hideAllTab();	
+	resetAllTabColor();
+	setTabColor(tabClicked);
+	showTab(option);
+	updateDataList(option);
+	return false;
+}
+function updateDataList(option){
 	if(option=="searchuser" || option=="commentuser"){
 		var total=parseInt(sessionStorage.totalUsers);
-		for(currentTotalUsers;currentTotalUsers<=total;currentTotalUsers++){	
-			var newEmp=document.createElement("p").appendChild(document.createTextNode(sessionStorage.getItem(currentTotalUsers)));
+		for(currentTotalUsers;currentTotalUsers<=total;currentTotalUsers++){
+			var userObj=JSON.parse(sessionStorage.getItem("uid" + currentTotalUsers));	
+			var newEmp=document.createElement("p").appendChild(document.createTextNode(userObj.email));
 			document.getElementById("userlist").appendChild(newEmp);
 			document.getElementById("userlist").appendChild(document.createElement("br"));
 
 			var newData=document.createElement("option");
-			newData.setAttribute("value",sessionStorage.getItem(currentTotalUsers));
+			newData.setAttribute("value",userObj.email);
 			document.getElementById("datalistComment").appendChild(newData);
 		}	
+	}
+}
+function hideAllTab(){
+	var tabs=["hrblock","searchuser","commentuser"];
+	for(var i=0;i<3;i++){
+		document.getElementById(tabs[i]).style.display="none";
+		document.getElementById(tabs[i]).style.visibility="hidden";
+	}
+}
+function showTab(option){
+	document.getElementById(option).style.display="block";
+	document.getElementById(option).style.visibility="visible";
+}
+function resetAllTabColor(){
+	document.getElementById("navhrtoadduser").style.background=TabColorNormal;
+	document.getElementById("navhrtosearch").style.background=TabColorNormal;
+	document.getElementById("navhrtocomment").style.background=TabColorNormal;	
+
+}
+function setTabColor(tabClicked){
+	document.getElementById(tabClicked).style.background=TabColorSelected;
+}
+function redirectToPage(pageTitle){
+	window.location=pageTitle;
+	return false;
+}
+function userAlreadyExist(userMail,lastCount){
+	for(var i=1;i<=lastCount;i++){
+		if(sessionStorage.getItem(i)==userMail){
+			return true;
+		}
 	}
 	return false;
 }

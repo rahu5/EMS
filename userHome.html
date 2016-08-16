@@ -14,15 +14,16 @@
 		<div id="usermainblock">
 		<div id="userprofile">
 			E MAIL :
-			<p id="profilemail"></p><br>
-			Password :
-			<p id="profilepass"></p>
-			<form onsubmit="return changePass()">
-				<input type="text" placeholder="New Password" id="newpassword">
-			</form>
-			<br>
+			<p id="profilemail"></p>
 			Comment By HR :<br><br>
 			<div id="profilecomment"></div><br>
+			Change Password :
+			<form id="changePassForm" onsubmit="return changePass()">
+				<input type="password" placeholder="Old Password" id="oldpassword">
+				<br>
+				<input type="password" placeholder="New Password" id="newpassword">
+				<input type="submit" value="Change">
+			</form>
 		</div>
 		<button type="button" onclick="logOutUser()"> Log Out </button>
 		</div>

@@ -1,8 +1,8 @@
-var hrEmail="hr@cronj.com";
-var hrPass="hrcronj";
-var WrongEmailPassword="Wrong Email OR Password!";
-var InvalidEmail="Not an email! Please insert a valid email."
-var UnknownError="Something went wrong !";
+const hrEmail="hr@cronj.com";
+const hrPass="hrcronj";
+const WrongEmailPassword="Wrong Email OR Password!";
+const InvalidEmail="Not an email! Please insert a valid email."
+const UnknownError="Something went wrong !";
 function validateUser() {
 	console.log("validate");
 	var userMail=document.getElementById("usermail").value;
@@ -12,39 +12,44 @@ function validateUser() {
 		return false;
 	}
 	if(userMail==hrEmail && userPass==hrPass) {
-			//alert("Logged In!");
-			console.log("Hr logging in..");
-			try{
-			if(sessionStorage.totalUsers == undefined){
-				sessionStorage.totalUsers=0;
-			}}catch(e){
-				alert(UnknownError);
-				return false;
-			}
-			sessionStorage.currentUser=hrEmail;
-			//alert("total users are : " + sessionStorage.totalUsers);	
-			return loggedInHR();
+			return logInHR();
 	}
 	else{
 		if(sessionStorage.totalUsers){
-			var total=sessionStorage.totalUsers;
-			console.log("searching within " + total + " Users");
-			for(var i=1;i<=total;i++){
-				if(sessionStorage.getItem(i)==userMail && sessionStorage.getItem(userMail)==userPass){
-					sessionStorage.currentUser=userMail;
-					sessionStorage.setItem("beforeUserHome",'x5x5x5x');
-					window.location='userHome.html';
-					return false;
-				}
-			}
-			alert(WrongEmailPassword);
+			return logInUser(userMail,userPass);
 		}else{
-			alert(WrongEmailPassword);
+			return alert(WrongEmailPassword);
 		}	
 	}
 }
-function loggedInHR(){
+function logInHR(){
+	console.log("Hr logging in..");
+	try{
+		if(sessionStorage.totalUsers == undefined){
+			sessionStorage.totalUsers=0;
+		}
+	}catch(e){
+		alert(UnknownError);
+		return false;
+	}
+	sessionStorage.currentUser=hrEmail;		
 	sessionStorage.setItem("beforeHrHome","x5x5x5x");
-	window.location='hrHome.html';
+	redirectToPage('hrHome.html');
 	return false;	
+}
+function redirectToPage(pageTitle){
+	window.location=pageTitle;
+}
+function logInUser(userMail,userPass){
+	var total=sessionStorage.totalUsers;
+	console.log("searching within " + total + " Users");
+	for(var i=1;i<=total;i++){
+		if(sessionStorage.getItem(i)==userMail && sessionStorage.getItem(userMail)==userPass){
+			sessionStorage.currentUser=userMail;
+			sessionStorage.setItem("beforeUserHome",'x5x5x5x');
+			redirectToPage('userHome.html');
+			return false;
+		}
+	}
+	return alert(WrongEmailPassword);
 }

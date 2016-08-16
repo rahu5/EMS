@@ -1,31 +1,32 @@
 window.onload  =  function () {
 	try{
 	if(sessionStorage.beforeSearchResult != "x5x5x5x"){
-		window.location='home.html';
-		console.log("Direct access not allowed : ");
+		redirectToPage('home.html');
 		return;
 	}}catch(e){
-		window.location='home.html';
-		console.log("Direct access not allowed : ");
+		redirectToPage('home.html');
 		return;
 	}
-	var result = sessionStorage.getItem('searchResultByComma');
-	var emails = result.split(",");
-	if(result==""){
+	var resultArray = JSON.parse(sessionStorage.getItem('searchResult'));
+	if(resultArray.length){
 		var pTag=document.createElement("p");
 		var insideText=document.createTextNode("Sorry! No match found.");
 		pTag.appendChild(insideText);
 		document.getElementById('resultblock').appendChild(pTag);
 		return;
 	}
-	for(var i=0;i<emails.length;i++){
+	var listSize=resultArray.list.length;
+	for(var i=0;i<listSize;i++){
 		var pTag=document.createElement("p");
-		var insideText=document.createTextNode(emails[i]);
+		var insideText=document.createTextNode(resultArray.list[i]);
 		pTag.appendChild(insideText);
 		var resultBlock = document.getElementById('resultblock');
 		resultBlock.appendChild(pTag);
 	}
 }
 function hrGoBack(){
-	window.location='hrHome.html';
+	redirectToPage('hrHome.html');
+}
+function redirectToPage(pageTitle){
+	window.location=pageTitle;
 }

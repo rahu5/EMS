@@ -17,9 +17,11 @@
 		<div id="hrmainblock">
 		<form id="hrblock" onsubmit="return addNewEmp()">
 			<br>
-			<input type="email" name="usermail" id="usermail" placeholder="Email" required><br>
-			<input type="password" name="userpass" id="userpass" placeholder="Password" required><br>
-			<input type="submit" " value="Add"></button>
+			<input type="text" id="username" placeholder="Name" required><br>
+			<input type="text" id="usermobile" placeholder="Mobile" required><br>
+			<input type="email" id="usermail" placeholder="Email" required><br>
+			<input type="password" id="userpass" placeholder="Password" required><br>
+			<input type="submit" " value="Add">
 			<br>
 			<br>
 			Total Users : <span id="totalusers">0</span><br>
@@ -28,6 +30,7 @@
 		<div id="searchuser">
 			<br>
 			<input type="text" placeholder="Search User" id="searchtext" onkeypress="searchUser(event)">
+			<button type="button" onclick="searchUser(13)">Search</button>
 			<br>
 			<br>
 			<b>All Users : </b><br>
