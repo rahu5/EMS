@@ -1,11 +1,14 @@
 var hrEmail="hr@cronj.com";
 var hrPass="hrcronj";
+var WrongEmailPassword="Wrong Email OR Password!";
+var InvalidEmail="Not an email! Please insert a valid email."
+var UnknownError="Something went wrong !";
 function validateUser() {
 	console.log("validate");
 	var userMail=document.getElementById("usermail").value;
 	var userPass=document.getElementById("userpass").value;	
 	if(!userMail.includes("@")){
-		alert("Not an email! Please insert a valid email.");
+		alert(InvalidEmail);
 		return false;
 	}
 	if(userMail==hrEmail && userPass==hrPass) {
@@ -15,7 +18,7 @@ function validateUser() {
 			if(sessionStorage.totalUsers == undefined){
 				sessionStorage.totalUsers=0;
 			}}catch(e){
-				alert("Something went wrong !");
+				alert(UnknownError);
 				return false;
 			}
 			sessionStorage.currentUser=hrEmail;
@@ -34,9 +37,9 @@ function validateUser() {
 					return false;
 				}
 			}
-			alert("Wrong Email OR Password!");
+			alert(WrongEmailPassword);
 		}else{
-			alert("Wrong Email OR Password!");
+			alert(WrongEmailPassword);
 		}	
 	}
 }

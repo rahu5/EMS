@@ -2,11 +2,11 @@ window.onload  =  function () {
 	try{
 	if(sessionStorage.beforeSearchResult != "x5x5x5x"){
 		window.location='home.html';
-		console.log("Direct access not allowed : " + document.referrer);
+		console.log("Direct access not allowed : ");
 		return;
 	}}catch(e){
 		window.location='home.html';
-		console.log("Direct access not allowed : " + document.referrer);
+		console.log("Direct access not allowed : ");
 		return;
 	}
 	var result = sessionStorage.getItem('searchResultByComma');

@@ -3,11 +3,11 @@ window.onload = function (){
 	try{
 	if(sessionStorage.getItem("beforeHrHome")==undefined){
 		window.location='home.html';
-		console.log("Direct access not allowed : " + document.referrer);
+		console.log("Direct access not allowed : ");
 		return;
 	}}catch(e){
 		window.location='home.html';
-		console.log("Direct access not allowed : " + document.referrer);
+		console.log("Direct access not allowed : ");
 		return;
 	}
 	console.log("totalusers are : " + sessionStorage.totalUsers);
@@ -86,6 +86,8 @@ function makeComment(){
 	}
 }
 var currentTotalUsers=1;
+var TabColorNormal="#aabbcc";
+var TabColorSelected="#3973ac";
 function navigateHrTo(option,tabClicked){
 	console.log(option + "tab clicked.");
 	var tabs=["hrblock","searchuser","commentuser"];
@@ -95,11 +97,11 @@ function navigateHrTo(option,tabClicked){
 		document.getElementById(tabs[i]).style.visibility="hidden";
 		console.log("hidden : " + tabs[i]);
 	}
-	document.getElementById("navhrtoadduser").style.background="#aabbcc";
-	document.getElementById("navhrtosearch").style.background="#aabbcc";
-	document.getElementById("navhrtocomment").style.background="#aabbcc";	
+	document.getElementById("navhrtoadduser").style.background=TabColorNormal;
+	document.getElementById("navhrtosearch").style.background=TabColorNormal;
+	document.getElementById("navhrtocomment").style.background=TabColorNormal;	
 	
-	document.getElementById(tabClicked).style.background="#3973ac";
+	document.getElementById(tabClicked).style.background=TabColorSelected;
 
 	document.getElementById(option).style.display="block";
 	document.getElementById(option).style.visibility="visible";

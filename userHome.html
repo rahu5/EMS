@@ -16,8 +16,12 @@
 			E MAIL :
 			<p id="profilemail"></p><br>
 			Password :
-			<p id="profilepass"></p><br>
-			Comment By HR :
+			<p id="profilepass"></p>
+			<form onsubmit="return changePass()">
+				<input type="text" placeholder="New Password" id="newpassword">
+			</form>
+			<br>
+			Comment By HR :<br><br>
 			<div id="profilecomment"></div><br>
 		</div>
 		<button type="button" onclick="logOutUser()"> Log Out </button>
