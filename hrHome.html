@@ -10,15 +10,15 @@
 			<h1 class="headerfooter">Employee Management System</h1>
 			<nav id="hrnavigation">
 				<span id="navhrtoadduser" class="navTabs" onclick="navigateHrTo('hrblock','navhrtoadduser')">Add</span>
-				<span id="navhrtosearch" class="navTabs" onclick="navigateHrTo('searchuser','navhrtosearch')">Search</span>
+				<span id="navhrtosearch" class="navTabs" onclick="navigateHrTo('searchuser','navhrtosearch')">View</span>
 				<span id="navhrtocomment" class="navTabs" onclick="navigateHrTo('commentuser','navhrtocomment')">Comment</span>
 			</nav>
 		</header>
 		<div id="hrmainblock">
 		<form id="hrblock" onsubmit="return addNewEmp()">
 			<br>
-			<input type="text" id="username" placeholder="Name" required><br>
-			<input type="text" id="usermobile" placeholder="Mobile" required><br>
+			<input type="text" id="username" placeholder="Name"><br>
+			<input type="number" id="usermobile" placeholder="Mobile" required><br>
 			<input type="email" id="usermail" placeholder="Email" required><br>
 			<input type="password" id="userpass" placeholder="Password" required><br>
 			<input type="submit" " value="Add">
@@ -28,10 +28,14 @@
 			<br>
 		</form>
 		<div id="searchuser">
+			<input type="text" placeholder="Search User" id="searchtext" onkeypress="searchUser(event,'viewuser')">
+			<button type="button" onclick="searchUser(13,"viewuser")">View</button>
 			<br>
-			<input type="text" placeholder="Search User" id="searchtext" onkeypress="searchUser(event)">
-			<button type="button" onclick="searchUser(13)">Search</button>
-			<br>
+			<div id="viewuser">
+				Name:<span id="viewname"></span><br>
+				Mobile:<span id="viewmobile"></span><br>
+				E-Mail:<span id="viewemail"></span><br>		
+			</div>
 			<br>
 			<b>All Users : </b><br>
 			<div id="userlist">

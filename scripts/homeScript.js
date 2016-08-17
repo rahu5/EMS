@@ -3,6 +3,7 @@ const hrPass="hrcronj";
 const WrongEmailPassword="Wrong Email OR Password!";
 const InvalidEmail="Not an email! Please insert a valid email.";
 const UnknownError="Something went wrong !";
+
 function validateUser() {
 	console.log("validate");
 	var userMail=document.getElementById("usermail").value;
@@ -37,9 +38,11 @@ function logInHR(){
 	redirectToPage('hrHome.html');
 	return false;	
 }
+
 function redirectToPage(pageTitle){
 	window.location=pageTitle;
 }
+
 function logInUser(userMail,userPass){
 	var total=sessionStorage.totalUsers;
 	console.log("searching within " + total + " Users");

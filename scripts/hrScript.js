@@ -12,24 +12,34 @@ window.onload = function (){
 }
 
 function addNewEmp() {
+	
+
+	//make one object user
 	var userMail=document.getElementById("usermail").value;
 	var userPass=document.getElementById("userpass").value;
 	var userName=document.getElementById("username").value;
 	var userMobile=document.getElementById("usermobile").value;
+
 	var lastCount=parseInt(sessionStorage.totalUsers);
 	if(userAlreadyExist(userMail,lastCount)){
 		alert("Dang! This user exists already.");
 		return false;
 	}
 	var obj={email:userMail,pass:userPass,name:userName,mobile:userMobile,comment:[]};
+	
 	sessionStorage.setItem("uid"+(lastCount+1),JSON.stringify(obj));
 	//sessionStorage.setItem(lastCount+1,userMail);
 	//sessionStorage.setItem(userMail,userPass);
+	
 	sessionStorage.setItem('totalUsers',lastCount+1);
+	
 	console.log("total users : " + (lastCount+1));
+	
 	document.getElementById("totalusers").innerHTML=lastCount+1;
+
 	document.getElementById("usermail").value = '';
 	document.getElementById("userpass").value = '';
+	
 	return false;
 }
 function hrLogOut(){
@@ -76,14 +86,18 @@ function makeComment(){
 var currentTotalUsers=1;
 const TabColorNormal="#aabbcc";
 const TabColorSelected="#3973ac";
+
 function navigateHrTo(option,tabClicked){
+	
 	hideAllTab();	
-	resetAllTabColor();
+    resetAllTabColor();
 	setTabColor(tabClicked);
 	showTab(option);
+	
 	updateDataList(option);
 	return false;
 }
+
 function updateDataList(option){
 	if(option=="searchuser" || option=="commentuser"){
 		var total=parseInt(sessionStorage.totalUsers);
@@ -138,7 +152,8 @@ function redirectToPage(pageTitle){
 }
 function userAlreadyExist(userMail,lastCount){
 	for(var i=1;i<=lastCount;i++){
-		if(sessionStorage.getItem(i)==userMail){
+		var userOb=JSON.parse(sessionStorage.getItem("uid"+i));
+		if(userOb.email==userMail){
 			return true;
 		}
 	}
