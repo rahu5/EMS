@@ -28,8 +28,8 @@
 			<br>
 		</form>
 		<div id="searchuser">
-			<input type="text" placeholder="Search User" id="searchtext" onkeypress="searchUser(event,'viewuser')">
-			<button type="button" onclick="searchUser(13,"viewuser")">View</button>
+			<input type="text" placeholder="Search User" id="searchtext" onkeypress="searchUser(event)">
+			<button type="button" onclick="searchUser(13)">View</button>
 			<br>
 			<div id="viewuser">
 				Name:<span id="viewname"></span><br>
@@ -43,6 +43,12 @@
 			</div>
 		</div>
 		<form id="commentuser" onsubmit="return makeComment()">			
+			<br>
+			<div id="commentprofile">
+				Name:<span id="commentproflename"></span><br>
+				Mobile:<span id="commentproflemobile"></span><br>
+				Email:<span id="commentproflemail"></span><br>
+			</div>
 			<br>
 			<input type="text" id="usercommentmail" placeholder="Email" list="datalistComment" autocomplete="off"><br>
 			<datalist id="datalistComment">

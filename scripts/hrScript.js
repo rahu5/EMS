@@ -12,8 +12,6 @@ window.onload = function (){
 }
 
 function addNewEmp() {
-	
-
 	//make one object user
 	var userMail=document.getElementById("usermail").value;
 	var userPass=document.getElementById("userpass").value;
@@ -39,7 +37,8 @@ function addNewEmp() {
 
 	document.getElementById("usermail").value = '';
 	document.getElementById("userpass").value = '';
-	
+	document.getElementById("username").value = '';
+	document.getElementById("usermobile").value = '';
 	return false;
 }
 function hrLogOut(){
@@ -49,7 +48,7 @@ function searchUser(event){
 	if(event.which==13 || event=='13'){
 		var searchPattern=document.getElementById("searchtext").value;
 		//var searchResultByComma="";
-		var searchResult={list:[]};
+		/*var searchResult={list:[]};
 		var totalusers=parseInt(sessionStorage.totalUsers);
 		for(var i=1;i<=totalusers;i++){
 			var fetchObj=JSON.parse(sessionStorage.getItem("uid" + i));
@@ -60,7 +59,17 @@ function searchUser(event){
 		}
 		sessionStorage.setItem('searchResult',JSON.stringify(searchResult));
 		sessionStorage.setItem('beforeSearchResult','x5x5x5x');
-		redirectToPage('searchResult.html');
+		redirectToPage('searchResult.html');*/
+		for(var i=1;i<currentTotalUsers;i++){
+			var listItem=document.getElementById('show'+i).innerHTML;
+			if(!(listItem.includes(searchPattern))){
+				document.getElementById('show'+i).style.display='none';
+				document.getElementById('show'+i).style.visibility='hidden';
+			}else{
+				document.getElementById('show'+i).style.display='block';
+				document.getElementById('show'+i).style.visibility='visible';
+			}
+		}
 	}	
 }
 function makeComment(){
@@ -93,8 +102,12 @@ function navigateHrTo(option,tabClicked){
     resetAllTabColor();
 	setTabColor(tabClicked);
 	showTab(option);
-	
 	updateDataList(option);
+	if(option=="commentuser"){
+		document.getElementById("commentprofile").style.visibility='hidden';
+		document.getElementById("commentprofile").style.display='none';
+		document.getElementById("usercommentmail").style.visibility='visible';
+	}
 	return false;
 }
 
@@ -103,10 +116,12 @@ function updateDataList(option){
 		var total=parseInt(sessionStorage.totalUsers);
 		for(currentTotalUsers;currentTotalUsers<=total;currentTotalUsers++){
 			var userObj=JSON.parse(sessionStorage.getItem("uid" + currentTotalUsers));
-			var id="uid" + currentTotalUsers;	
+			var idL=parseInt(currentTotalUsers);	
 			var newEmp=document.createElement("p");
-			newEmp.onclick=function(){commentOn(id);
-							};
+			//newEmp.onclick=function(idL){ commentOn(idL);
+			//			};
+			newEmp.setAttribute('onclick','commentOn('+idL+')');
+			newEmp.setAttribute('id','show' + idL);
 			newEmp.appendChild(document.createTextNode(userObj.email));
 			document.getElementById("userlist").appendChild(newEmp);
 			//document.getElementById("userlist").appendChild(document.createElement("br"));
@@ -119,12 +134,18 @@ function updateDataList(option){
 }
 function commentOn(id){
 	console.log("clicked : " + id);
-	var selectedUser=JSON.parse(sessionStorage.getItem(id));
+	var selectedUser=JSON.parse(sessionStorage.getItem("uid" + id));
 	document.getElementById("usercommentmail").value=selectedUser.email;
 	hideAllTab();
 	resetAllTabColor();
 	setTabColor("navhrtocomment");
+	document.getElementById("commentproflename").innerHTML=selectedUser.name;
+	document.getElementById("commentproflemobile").innerHTML=selectedUser.mobile;
+	document.getElementById("commentproflemail").innerHTML=selectedUser.email;
+	document.getElementById("usercommentmail").style.visibility='hidden';
 	showTab("commentuser");
+	document.getElementById("commentprofile").style.visibility='visible';
+	document.getElementById("commentprofile").style.display='block';
 }
 function hideAllTab(){
 	var tabs=["hrblock","searchuser","commentuser"];
