@@ -35,11 +35,15 @@ function addNewEmp() {
 	
 	document.getElementById("totalusers").innerHTML=lastCount+1;
 
+	clearAddForm();
+
+	return false;
+}
+function clearAddForm(){
 	document.getElementById("usermail").value = '';
 	document.getElementById("userpass").value = '';
 	document.getElementById("username").value = '';
 	document.getElementById("usermobile").value = '';
-	return false;
 }
 function hrLogOut(){
 	return redirectToPage('home.html');
