@@ -37,6 +37,9 @@ function addNewEmp() {
 
 	clearAddForm();
 
+
+
+
 	return false;
 }
 function clearAddForm(){
