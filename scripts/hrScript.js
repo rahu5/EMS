@@ -17,7 +17,21 @@ function addNewEmp() {
 	var userPass=document.getElementById("userpass").value;
 	var userName=document.getElementById("username").value;
 	var userMobile=document.getElementById("usermobile").value;
-
+	if(!testName(userName)){
+		alert("Please enter a valid Name");
+		document.getElementById("username").focus();
+		return false;
+	}
+	if(!testMobile(userMobile)){
+		alert("Please enter a valid Mobile Number");
+		document.getElementById("usermobile").focus();
+		return false;
+	}
+	if(!testEmail(userMail)){
+		alert("Please enter a valid E-Mail");
+		document.getElementById("usermail").focus();
+		return false;
+	}
 	var lastCount=parseInt(sessionStorage.totalUsers);
 	if(userAlreadyExist(userMail,lastCount)){
 		alert("Dang! This user exists already.");
@@ -26,23 +40,14 @@ function addNewEmp() {
 	var obj={email:userMail,pass:userPass,name:userName,mobile:userMobile,comment:[]};
 	
 	sessionStorage.setItem("uid"+(lastCount+1),JSON.stringify(obj));
-	//sessionStorage.setItem(lastCount+1,userMail);
-	//sessionStorage.setItem(userMail,userPass);
-	
 	sessionStorage.setItem('totalUsers',lastCount+1);
-	
 	console.log("total users : " + (lastCount+1));
-	
 	document.getElementById("totalusers").innerHTML=lastCount+1;
-
 	clearAddForm();
-
-
-
-
 	return false;
 }
 function clearAddForm(){
+	console.log("clear form");
 	document.getElementById("usermail").value = '';
 	document.getElementById("userpass").value = '';
 	document.getElementById("username").value = '';
@@ -54,19 +59,6 @@ function hrLogOut(){
 function searchUser(event){
 	if(event.which==13 || event=='13'){
 		var searchPattern=document.getElementById("searchtext").value;
-		//var searchResultByComma="";
-		/*var searchResult={list:[]};
-		var totalusers=parseInt(sessionStorage.totalUsers);
-		for(var i=1;i<=totalusers;i++){
-			var fetchObj=JSON.parse(sessionStorage.getItem("uid" + i));
-			var fetchEmail=fetchObj.email;
-			if(fetchEmail.includes(searchPattern)){
-				searchResult.list[searchResult.list.length]=fetchEmail;
-			}	
-		}
-		sessionStorage.setItem('searchResult',JSON.stringify(searchResult));
-		sessionStorage.setItem('beforeSearchResult','x5x5x5x');
-		redirectToPage('searchResult.html');*/
 		for(var i=1;i<currentTotalUsers;i++){
 			var listItem=document.getElementById('show'+i).innerHTML;
 			if(!(listItem.includes(searchPattern))){
@@ -164,6 +156,15 @@ function hideAllTab(){
 function showTab(option){
 	document.getElementById(option).style.display="block";
 	document.getElementById(option).style.visibility="visible";
+	if(option=="hrblock"){
+		document.getElementById("username").focus();
+	}
+	if(option=="searchuser"){
+		document.getElementById("searchtext").focus();
+	}
+	if(option=="commentuser"){
+		document.getElementById("usercommentmail").focus();
+	}
 }
 function resetAllTabColor(){
 	document.getElementById("navhrtoadduser").style.background=TabColorNormal;
@@ -185,5 +186,32 @@ function userAlreadyExist(userMail,lastCount){
 			return true;
 		}
 	}
+	return false;
+}
+function testEmail(email){
+	if(!email.includes('@'))
+		return false;
+	var part=email.split('@');
+	if(part.length>2)
+		return false;
+	var regEx=new RegExp("[^a-zA-Z0-9._]");
+	if(regEx.test(part[0]))
+		return false;
+	if(regEx.test(part[1]))
+		return false;
+	return true;
+}
+function testName(name){
+	var regExName=new RegExp("[^a-zA-Z ]");
+	if(regExName.test(name))
+		return false;
+	return true;
+}
+function testMobile(mobile){
+	var regExMobile=new RegExp("[1-9][0-9]{9}");
+	if(mobile.length>10 || mobile.length<10)
+		return false;
+	if(regExMobile.test(mobile))
+		return true;
 	return false;
 }

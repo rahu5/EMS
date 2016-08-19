@@ -17,10 +17,10 @@
 		<div id="hrmainblock">
 		<form id="hrblock" onsubmit="return addNewEmp()">
 			<br>
-			<input type="text" id="username" placeholder="Name"><br>
-			<input type="number" id="usermobile" placeholder="Mobile" required><br>
-			<input type="email" id="usermail" placeholder="Email" required><br>
-			<input type="password" id="userpass" placeholder="Password" required><br>
+			<input type="text" id="username" placeholder="Name" tabindex="1" autofocus><br>
+			<input type="text" id="usermobile" placeholder="Mobile" tabindex="2" required><br>
+			<input type="text" id="usermail" placeholder="Email" tabindex="3" required><br>
+			<input type="password" id="userpass" placeholder="Password" tabindex="4" required><br>
 			<input type="submit" " value="Add">
 			<br>
 			<br>
@@ -50,11 +50,11 @@
 				Email:<span id="commentproflemail"></span><br>
 			</div>
 			<br>
-			<input type="text" id="usercommentmail" placeholder="Email" list="datalistComment" autocomplete="off"><br>
+			<input type="text" id="usercommentmail" placeholder="Email" list="datalistComment" autocomplete="off" tabindex="1"><br>
 			<datalist id="datalistComment">
 				
 			</datalist>
-			<input type="text" id="usercomment" placeholder="Comment"><br>
+			<input type="text" id="usercomment" placeholder="Comment" tabindex="2"><br>
 			<input type="submit" value="Comment">
 		</form>
 		<br>
